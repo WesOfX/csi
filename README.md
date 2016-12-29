@@ -140,39 +140,18 @@ int main(){
 }
 ```
 
-#### Test all possible combinations of styles.
-```
-#include <iostream>
-#include "csi.hpp"
-
-int main(){
-	/* Print "Hello World!" with every
-	 * possible combination of styles. */
-	for(int i = 0; i < 16; i++){
-		std::cout << csi::style(
-			(bool)(i / 1 % 2),
-			(bool)(i / 2 % 2),
-			(bool)(i / 4 % 2),
-			(bool)(i / 8 % 2)
-		);
-		std::cout << "Hello World!"
-		          << csi::style()
-		          << std::endl;
-	}
-}
-```
-
-#### Test all possible combinations of colors.
+#### Test all possible combinations of styles and colors
 ```
 #include <iostream>
 #include "csi.hpp"
 
 #include <array>
+#include <math.h>
 
 int main(){
-	/* Print "Hello World!" with every possible
-	 * combination of foreground and background
-	 * colors. */
+	/* Print "Aa" with every possible combination of
+	 * style and foreground and background colors inverted
+	 * and not inverted. */
 	constexpr size_t color_count = 8;
 	constexpr std::array<csi::color_code, color_count> all_colors = {
 		{
@@ -186,14 +165,25 @@ int main(){
 			csi::color_code::white,
 		}
 	};
-	for(size_t i = 0; i < color_count * color_count; i++){
+	for(size_t i = 0; i < pow(color_count, 2); i++){
 		std::cout << csi::color(
 			all_colors[i % color_count],
 			all_colors[i / color_count % color_count]
 		);
-		std::cout << "Hello World!"
-		          << csi::color()
-		          << std::endl;
+		constexpr size_t style_count = 4;
+		for(size_t j = 0; j < pow(2, style_count); j++){
+			std::cout << csi::style(
+				(bool)(j / 1 % 2),
+				(bool)(j / 2 % 2),
+				(bool)(j / 4 % 2),
+				(bool)(j / 8 % 2)
+			);
+			std::cout << "Aa"
+			          << csi::enable(csi::style_code::inverse)
+			          << "Aa"
+			          << csi::disable(csi::style_code::inverse);
+		}
+		std::cout << csi::color() << std::endl;
 	}
 }
 ```
