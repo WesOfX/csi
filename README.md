@@ -140,7 +140,7 @@ int main(){
 }
 ```
 
-#### Test all possible combinations of style
+#### Test all possible combinations of styles.
 ```
 #include <iostream>
 #include "csi.hpp"
