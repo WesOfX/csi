@@ -67,7 +67,6 @@ int main(){
 ```
 
 #### Set the foreground color and the background color simultaniously.
-Optionally, the text color and background color can be inverted
 ```
 #include <iostream>
 #include "csi.hpp"
@@ -89,7 +88,7 @@ int main(){
 }
 ```
 
-#### Erase the display and move the cursor
+#### Erase the display and move the cursor.
 ```
 #include <iostream>
 #include "csi.hpp"
