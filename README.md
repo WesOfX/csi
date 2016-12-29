@@ -91,3 +91,20 @@ int main(){
 	          << std::endl;
 }
 ```
+
+#### How to erase the display and move the cursor
+```
+#include <iostream>
+#include "csi.hpp"
+
+int main(){
+	/* Erase display, set the cursor position
+	 * to the second column of the second row,
+	 * print "Hello World!", then print a new
+	 * line. */
+	std:: cout << csi::erase_display()
+	           << csi::cursor_position(2, 2)
+	           << "Hello World!"
+	           << std::endl;
+}
+```
