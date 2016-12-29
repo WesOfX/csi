@@ -161,3 +161,39 @@ int main(){
 	}
 }
 ```
+
+#### Test all possible combinations of colors.
+```
+#include <iostream>
+#include "csi.hpp"
+
+#include <array>
+
+int main(){
+	/* Print "Hello World!" with every possible
+	 * combination of foreground and background
+	 * colors. */
+	constexpr size_t color_count = 8;
+	constexpr std::array<csi::color_code, color_count> all_colors = {
+		{
+			csi::color_code::black,
+			csi::color_code::red,
+			csi::color_code::green,
+			csi::color_code::yellow,
+			csi::color_code::blue,
+			csi::color_code::magenta,
+			csi::color_code::cyan,
+			csi::color_code::white,
+		}
+	};
+	for(size_t i = 0; i < color_count * color_count; i++){
+		std::cout << csi::color(
+			all_colors[i % color_count],
+			all_colors[i / color_count % color_count]
+		);
+		std::cout << "Hello World!"
+		          << csi::color()
+		          << std::endl;
+	}
+}
+```
