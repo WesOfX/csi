@@ -139,3 +139,25 @@ int main(){
 	          << std::endl;
 }
 ```
+
+#### Test all possible combinations of style
+```
+#include <iostream>
+#include "csi.hpp"
+
+int main(){
+	/* Print "Hello World!" with every
+	 * possible combination of styles. */
+	for(int i = 0; i < 16; i++){
+		std::cout << csi::style(
+			(bool)(i / 1 % 2),
+			(bool)(i / 2 % 2),
+			(bool)(i / 4 % 2),
+			(bool)(i / 8 % 2)
+		);
+		std::cout << "Hello World!"
+		          << csi::style()
+		          << std::endl;
+	}
+}
+```
