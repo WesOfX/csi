@@ -1,4 +1,4 @@
-#### How to enable and disable styles one at a time
+#### Enable and disable styles one at a time.
 ```
 #include <iostream>
 #include "csi.hpp"
@@ -13,7 +13,7 @@ int main(){
 }
 ```
 
-#### How to select multiple styles simultaniously
+#### Select multiple styles simultaniously.
 ```
 #include <iostream>
 #include "csi.hpp"
@@ -35,7 +35,7 @@ int main(){
 }
 ```
 
-#### How to set text color
+#### Set the foreground (text) color.
 ```
 #include <iostream>
 #include "csi.hpp"
@@ -50,13 +50,13 @@ int main(){
 }
 ```
 
-#### How to set text background color
+#### Set text background color
 ```
 #include <iostream>
 #include "csi.hpp"
 
 int main(){
-	/* Set the text background color to blue, print
+	/* Set the background color to blue, print
 	 * "Hello World!", set the text color to default,
 	 * then print a new line */
 	std::cout << csi::background(csi::color_code::blue)
@@ -66,7 +66,7 @@ int main(){
 }
 ```
 
-#### How to set the text color and the background color simultaniously
+#### Set the foreground color and the background color simultaniously.
 Optionally, the text color and background color can be inverted
 ```
 #include <iostream>
@@ -74,13 +74,10 @@ Optionally, the text color and background color can be inverted
 
 int main(){
 	/* Set the text color to cyan,
-	 * the background color to magenta,
-	 * but invert the text color and
-	 * the background color. */
+	 * the background color to magenta. */
 	std::cout << csi::color(
 		csi::color_code::cyan, // Text color
 		csi::color_code::magenta, // Background color
-		true // Inverted colors
 	);
 
 	/* Print "Hello World!", set
@@ -92,7 +89,7 @@ int main(){
 }
 ```
 
-#### How to erase the display and move the cursor
+#### Erase the display and move the cursor
 ```
 #include <iostream>
 #include "csi.hpp"
