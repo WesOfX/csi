@@ -104,3 +104,38 @@ int main(){
 	           << std::endl;
 }
 ```
+#### Many ways to do the same thing.
+```
+#include <iostream>
+#include "csi.hpp"
+
+int main(){
+	/* Enable bold text, print "Hello World",
+	 * disable bold text, then print a new line. */
+	std::cout << csi::enable(csi::style_code::bold) // "\033[1m"
+	          << "Hello World!"
+	          << csi::disable(csi::style_code::bold) // "\033[21m"
+	          << std::endl;
+
+	// This is equivilent
+	std::cout << csi::select_graphic_rendition(1) // "\033[1m"
+	          << "Hello World!"
+	          << csi::select_graphic_rendition(21) // "\033[21m"
+	          << std::endl;
+
+	// This is equivilent
+	std::cout << "\033[1m"
+	          << "Hello World!"
+	          << "\033[21m"
+	          << std::endl;
+
+	// This is NOT equivilent.
+	/* Enable bold and disable italics, underlined,
+	 * and strikethrough, print "Hello World!", disable
+	 * all styles, then print a new line. */
+	std::cout << csi::style(true) // "\033[1;23;24;29m"
+	          << "Hello World!"
+	          << csi::style() // "\033[21;23;24;29m"
+	          << std::endl;
+}
+```
