@@ -187,3 +187,4 @@ int main(){
 	}
 }
 ```
+[PNG screenshot of the output of the code above in a Gnome Terminal using the Tango color scheme.](https://i.sli.mg/4wnVC5.png)
