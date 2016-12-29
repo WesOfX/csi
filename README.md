@@ -67,7 +67,7 @@ int main(){
 ```
 
 #### How to set the text color and the background color simultaniously
-#### Optionally, the text color and background color can be inverted
+Optionally, the text color and background color can be inverted
 ```
 #include <iostream>
 #include "csi.hpp"
