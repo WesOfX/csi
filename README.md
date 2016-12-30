@@ -39,7 +39,7 @@ int main(){
 }
 ```
 
-#### Set the foreground (text) color.
+#### Set the foreground color. (Text color)
 ```cpp
 #include <iostream>
 #include "csi.hpp"
