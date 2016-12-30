@@ -1,10 +1,10 @@
 ![Demo screenshot!](https://i.sli.mg/Mugf8P.png)
 
 ## What is CSI?
-Many terminals today support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `\033` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `[` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. Some CSI codes require parameters which are a number between the `[` and the suffix. Multiple parameters are separated with `;` characters. The following CSI code enables bold, italics, and underline: `\033[1;3;4m`
+Many popular terminals support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `'\033'` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `'['` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. e.g. `"\033[C"` for moving the cursor forward. Some CSI codes require parameters which are a number between the `'['` and the suffix. Multiple parameters are separated with `';'` characters. The following CSI code enables bold, italics, and underline: `"\033[1;3;4m"`
 
 ## Why is this library useful?
-This library defines many methods for easily creating CSI strings without having to memorize the codes or the complicated syntax. Instead of having to remember `"\033[1m"` is enable bold and `"\033[21m"` is disable bold, you can just use `enable(style_code::bold)` and `disable(style_code::bold)`
+This library provides easy to use methods for creating ANSI escape sequence strings without having to memorize the codes or the syntax. Instead of using `"\033[1m"` and `"\033[21m"`, you can use `enable(style_code::bold)` and `disable(style_code::bold)` which is more descriptive.
 
 ## How to print text with style:
 Two methods named `enable` and `disable` can be used to enable and disable any style. Both methods accept `style_code` values. `style_code` is an `enum` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
