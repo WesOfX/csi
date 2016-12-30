@@ -30,9 +30,9 @@ int main(){
 	// Enable italics and strikethrough
 	std::cout << csi::style(
 		false, // Bold
-		true, // Italics
+		true,  // Italics
 		false, // Underlined
-		true // Strikethrough
+		true   // Strikethrough
 	);
 
 	/* Print "Hello World!", disable all
