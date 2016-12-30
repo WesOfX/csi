@@ -1,3 +1,7 @@
+Many terminals today support colors, styles, and many other features only accessible with the use of ANSI escape sequences. An ANSI escape sequence is a string which starts with an ANSI escape character `'\033'`. An ANSI escape character followed by an opening square bracket character `"\033["` is called a control sequence introducer or CSI. Following a CSI, a suffix character determins the function. e.g. `"\033[C"` moves the cursor forward 1 column and `"\033[E"` moves the cursor to the next line. Before the suffix character, a number can be used as a parameter. e.g. `"\033[7C"` moves the cursor forward 7 columns.
+
+This library defines many methods in the `csi` namespace for easily creating ANSI escape sequence strings without having to memorize their syntax or their codes. Instead of having to remember `"\033[1m"` is enable bold and `"\033[21m"` is disable bold, you can just use `csi::enable(csi::style_code::bold)` and `csi::disable(csi::style_code::bold)`
+
 #### Enable and disable styles one at a time.
 ```cpp
 #include <iostream>
