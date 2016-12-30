@@ -58,7 +58,7 @@ int main(){
 	          << std::endl;
 }
 ```
-Set the foreground and background color separately. (Text color)
+Set the foreground and background color separately.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
