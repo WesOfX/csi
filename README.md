@@ -1,7 +1,7 @@
 ![Demo screenshot!](https://i.sli.mg/nDPouC.png)
 
 ## What is CSI?
-Many terminals today support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `\033` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `[` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determin what it does. Some CSI codes require parameters which are a number between the `[` and the suffix. Multiple parameters are seperated with `;` characters. The following CSI code enables bold, italcs, and underline: `\033[1;3;4m`
+Many terminals today support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `\033` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `[` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. Some CSI codes require parameters which are a number between the `[` and the suffix. Multiple parameters are separated with `;` characters. The following CSI code enables bold, italics, and underline: `\033[1;3;4m`
 
 ## Why this library is useful
 This library defines many methods for easily creating CSI strings without having to memorize the codes or the complicated syntax. Instead of having to remember `"\033[1m"` is enable bold and `"\033[21m"` is disable bold, you can just use `enable(style_code::bold)` and `disable(style_code::bold)`
@@ -21,7 +21,7 @@ int main(){
 	          << std::endl;
 }
 ```
-Select multiple styles simultaniously.
+Select multiple styles simultaneously.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -63,7 +63,7 @@ int main(){
 	          << std::endl;
 }
 ```
-Set the foreground color and the background color simultaniously.
+Set the foreground color and the background color simultaneously.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -100,86 +100,3 @@ int main(){
 	           << std::endl;
 }
 ```
-Many ways to do the same thing.
-```cpp
-#include <iostream>
-#include "csi.hpp"
-
-int main(){
-	/* Enable bold text, print "Hello World",
-	 * disable bold text, then print a new line. */
-	std::cout << csi::enable(csi::style_code::bold) // "\033[1m"
-	          << "Hello World!"
-	          << csi::disable(csi::style_code::bold) // "\033[21m"
-	          << std::endl;
-
-	// This is equivilent
-	std::cout << csi::select_graphic_rendition(1) // "\033[1m"
-	          << "Hello World!"
-	          << csi::select_graphic_rendition(21) // "\033[21m"
-	          << std::endl;
-
-	// This is equivilent
-	std::cout << "\033[1m"
-	          << "Hello World!"
-	          << "\033[21m"
-	          << std::endl;
-
-	// This is ALMOST equivilent.
-	/* Enable bold and disable italics, underlined,
-	 * and strikethrough, print "Hello World!", disable
-	 * all styles, then print a new line. */
-	std::cout << csi::style(true) // "\033[1;23;24;29m"
-	          << "Hello World!"
-	          << csi::style() // "\033[21;23;24;29m"
-	          << std::endl;
-}
-```
-Test all the possible combinations of styles and colors.
-```cpp
-#include <iostream>
-#include "csi.hpp"
-
-#include <array>
-#include <math.h>
-
-int main(){
-	/* Print "Aa" with every possible combination of
-	 * style and foreground and background colors inverted
-	 * and not inverted. */
-	constexpr size_t color_count = 8;
-	constexpr std::array<csi::color_code, color_count> all_colors = {
-		{
-			csi::color_code::black,
-			csi::color_code::red,
-			csi::color_code::green,
-			csi::color_code::yellow,
-			csi::color_code::blue,
-			csi::color_code::magenta,
-			csi::color_code::cyan,
-			csi::color_code::white,
-		}
-	};
-	for(size_t i = 0; i < pow(color_count, 2); i++){
-		std::cout << csi::color(
-			all_colors[i % color_count],
-			all_colors[i / color_count % color_count]
-		);
-		constexpr size_t style_count = 4;
-		for(size_t j = 0; j < pow(2, style_count); j++){
-			std::cout << csi::style(
-				(bool)(j / 1 % 2),
-				(bool)(j / 2 % 2),
-				(bool)(j / 4 % 2),
-				(bool)(j / 8 % 2)
-			);
-			std::cout << "Aa"
-			          << csi::enable(csi::style_code::inverse)
-			          << "Aa"
-			          << csi::disable(csi::style_code::inverse);
-		}
-		std::cout << csi::color() << std::endl;
-	}
-}
-```
-[Screenshot of the output](https://i.sli.mg/4wnVC5.png)
