@@ -14,7 +14,7 @@ Enable and disable styles one at a time.
 
 int main(){
 	/* Enable bold, print "Hello World!",
-	 * disable bold, then print a newline. */
+	   disable bold, then print a newline. */
 	std::cout << csi::enable(csi::style_code::bold)
 	          << "Hello World!"
 	          << csi::disable(csi::style_code::bold)
@@ -36,7 +36,7 @@ int main(){
 	);
 
 	/* Print "Hello World!", disable all
-	 * styles, then print a new line. */
+	   styles, then print a new line. */
 	std::cout << "Hello World!"
 	          << csi::style()
 	          << std::endl;
@@ -49,7 +49,7 @@ Set the foreground and background color separately. (Text color)
 
 int main(){
 	/* Set the text color to yellow, print "Hello World!",
-	 * set the text color to default, then print a new line */
+	   set the text color to default, then print a new line */
 	std::cout << csi::foreground(csi::color_code::yellow)
 	          << "Hello World!"
 	          << csi::foreground()
@@ -70,7 +70,7 @@ Set the foreground color and the background color simultaneously.
 
 int main(){
 	/* Set the text color to cyan,
-	 * the background color to magenta. */
+	   the background color to magenta. */
 	std::cout << csi::color(
 		csi::color_code::cyan, // Text color
 		csi::color_code::magenta, // Background color
@@ -91,9 +91,9 @@ Erase the display and move the cursor.
 
 int main(){
 	/* Erase display, set the cursor position
-	 * to the second column of the second row,
-	 * print "Hello World!", then print a new
-	 * line. */
+	   to the second column of the second row,
+	   print "Hello World!", then print a new
+	   line. */
 	std:: cout << csi::erase_display()
 	           << csi::cursor_position(2, 2)
 	           << "Hello World!"
