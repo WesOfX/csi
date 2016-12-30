@@ -16,6 +16,12 @@ Two methods named `foreground` and `background` can be used to set the text colo
 
 A method named `color` can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `color_code foreground`, `color_code background`, and `bool inverse`.
 
+## How to move the cursor:
+Seven methods are defined for moving the cursor. They are `cursor_up`, `cursor_down`, `cursor_forward`, `cursor_back`, `cursor_next_line`, `cursor_previous_line`, and `cursor_position`. `cursor_position` accepts two parameters: `row` and `column`, both 1 by default (top-left corner) while the other methods accept a single parameter, also 1 by default.
+
+## How to erase the display:
+Not only can the display be erased, lines can be erased and even portions of lines can be erased. Two methods named `erase_display` and `erase_line` are defined and they both accept an `erase_mode` value. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
+
 ## Code Examples
 Enable and disable styles one at a time.
 ```cpp
