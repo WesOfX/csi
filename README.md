@@ -1,10 +1,10 @@
+#### What is CSI?
 Many terminals today support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `\033` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `[` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determin what it does. Some CSI codes require parameters which are a number between the `[` and the suffix. Multiple parameters are seperated with `;` characters. The following CSI code enables bold, italcs, and underline: `\033[1;3;4m`
 
 This library defines many methods for easily creating CSI strings without having to memorize the codes or the complicated syntax. Instead of having to remember `"\033[1m"` is enable bold and `"\033[21m"` is disable bold, you can just use `enable(style_code::bold)` and `disable(style_code::bold)`
 
-
-
-#### Enable and disable styles one at a time.
+#### Examples:
+Enable and disable styles one at a time.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -18,8 +18,7 @@ int main(){
 	          << std::endl;
 }
 ```
-
-#### Select multiple styles simultaniously.
+Select multiple styles simultaniously.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -40,8 +39,7 @@ int main(){
 	          << std::endl;
 }
 ```
-
-#### Set the foreground and background color separately. (Text color)
+Set the foreground and background color separately. (Text color)
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -62,8 +60,7 @@ int main(){
 	          << std::endl;
 }
 ```
-
-#### Set the foreground color and the background color simultaniously.
+Set the foreground color and the background color simultaniously.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -84,8 +81,7 @@ int main(){
 	          << std::endl;
 }
 ```
-
-#### Erase the display and move the cursor.
+Erase the display and move the cursor.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -101,7 +97,7 @@ int main(){
 	           << std::endl;
 }
 ```
-#### Many ways to do the same thing.
+Many ways to do the same thing.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -136,8 +132,7 @@ int main(){
 	          << std::endl;
 }
 ```
-
-#### Test all the possible combinations of styles and colors.
+Test all the possible combinations of styles and colors.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
