@@ -6,11 +6,15 @@ Many terminals today support colors, styles, and other features only accessible 
 ## Why is this library useful?
 This library defines many methods for easily creating CSI strings without having to memorize the codes or the complicated syntax. Instead of having to remember `"\033[1m"` is enable bold and `"\033[21m"` is disable bold, you can just use `enable(style_code::bold)` and `disable(style_code::bold)`
 
-## What styles are supported?
-An `enum` called `style_code` defines all the common styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the colors as if the text is highlighted. All of the styles can be combined.
+## How to print text with style:
+Two methods named `enable` and `disable` can be used to enable and disable any style. Both methods accept `style_code` values. `style_code` is an `enum` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
 
-## What colors are supported?
-An `enum` called `color_code` defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color. All of these colors can be applied to both the text and the background.
+A method named `style` can be used to enable and disable all styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bool bold`, `bool italics`, `bool underlined`, and `bool strikethrough`.
+
+## How to print colored text:
+Two methods named `foreground` and `background` can be used to set the text color and the background color respectively. Both methods accept `color_code` values. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
+
+A method named `color` can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `color_code foreground`, `color_code background`, and `bool inverse`.
 
 ## Code Examples
 Enable and disable styles one at a time.
