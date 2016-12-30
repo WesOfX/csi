@@ -8,22 +8,6 @@ This library defines many methods for easily creating CSI strings without having
 
 ## How to print text with style:
 Two methods named `enable` and `disable` can be used to enable and disable any style. Both methods accept `style_code` values. `style_code` is an `enum` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
-
-A method named `style` can be used to enable and disable all styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bool bold`, `bool italics`, `bool underlined`, and `bool strikethrough`.
-
-## How to print colored text:
-Two methods named `foreground` and `background` can be used to set the text color and the background color respectively. Both methods accept `color_code` values. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
-
-A method named `color` can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `color_code foreground`, `color_code background`, and `bool inverse`.
-
-## How to move the cursor:
-Seven methods are defined for moving the cursor. They are `cursor_up`, `cursor_down`, `cursor_forward`, `cursor_back`, `cursor_next_line`, `cursor_previous_line`, and `cursor_position`. `cursor_position` accepts two parameters: `row` and `column`, both 1 by default (top-left corner) while the other methods accept a single parameter, also 1 by default.
-
-## How to erase the display:
-Not only can the display be erased, lines can be erased and even portions of lines can be erased. Two methods named `erase_display` and `erase_line` are defined and they both accept an `erase_mode` value. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
-
-## Code Examples
-Enable and disable styles one at a time.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -37,7 +21,7 @@ int main(){
 	          << std::endl;
 }
 ```
-Select multiple styles simultaneously.
+A method named `style` can be used to enable and disable all styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bool bold`, `bool italics`, `bool underlined`, and `bool strikethrough`.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -58,7 +42,8 @@ int main(){
 	          << std::endl;
 }
 ```
-Set the foreground and background color separately.
+## How to print colored text:
+Two methods named `foreground` and `background` can be used to set the text color and the background color respectively. Both methods accept `color_code` values. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -79,7 +64,7 @@ int main(){
 	          << std::endl;
 }
 ```
-Set the foreground color and the background color simultaneously.
+A method named `color` can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `color_code foreground`, `color_code background`, and `bool inverse`.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -100,18 +85,31 @@ int main(){
 	          << std::endl;
 }
 ```
-Erase the display and move the cursor.
+## How to move the cursor:
+Seven methods are defined for moving the cursor. They are `cursor_up`, `cursor_down`, `cursor_forward`, `cursor_back`, `cursor_next_line`, `cursor_previous_line`, and `cursor_position`. `cursor_position` accepts two parameters: `row` and `column`, both 1 by default (top-left corner) while the other methods accept a single parameter, also 1 by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
 
 int main(){
-	/* Erase display, set the cursor position
-	   to the second column of the second row,
-	   print "Hello World!", then print a new
-	   line. */
+	/* Set the cursor position to the second column of
+	   the second row, print "Hello World!", then print
+	   a new line. */
+	std:: cout << csi::cursor_position(2, 2)
+	           << "Hello World!"
+	           << std::endl;
+}
+```
+## How to erase the display:
+Not only can the display be erased, lines can be erased and even portions of lines can be erased. Two methods named `erase_display` and `erase_line` are defined and they both accept an `erase_mode` value. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
+```cpp
+#include <iostream>
+#include "csi.hpp"
+
+int main(){
+	/* Erase the display and print "Hello World!",
+	   then print a new line */
 	std:: cout << csi::erase_display()
-	           << csi::cursor_position(2, 2)
 	           << "Hello World!"
 	           << std::endl;
 }
