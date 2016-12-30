@@ -1,5 +1,5 @@
 #### Enable and disable styles one at a time.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -14,7 +14,7 @@ int main(){
 ```
 
 #### Select multiple styles simultaniously.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -36,7 +36,7 @@ int main(){
 ```
 
 #### Set the foreground (text) color.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -51,7 +51,7 @@ int main(){
 ```
 
 #### Set text background color
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -67,7 +67,7 @@ int main(){
 ```
 
 #### Set the foreground color and the background color simultaniously.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -89,7 +89,7 @@ int main(){
 ```
 
 #### Erase the display and move the cursor.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -105,7 +105,7 @@ int main(){
 }
 ```
 #### Many ways to do the same thing.
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
@@ -141,7 +141,7 @@ int main(){
 ```
 
 #### Test all possible combinations of styles and colors
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
