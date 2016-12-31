@@ -4,10 +4,10 @@
 Many popular terminals support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `'\033'` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `'['` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. e.g. `"\033[C"` for moving the cursor forward. Some CSI codes require parameters which are a number between the `'['` and the suffix. Multiple parameters are separated with `';'` characters. The following CSI code enables bold, italics, and underline: `"\033[1;3;4m"`
 
 ## Why is this library useful?
-This library provides easy to use methods for creating ANSI escape sequence strings without having to memorize the codes or the syntax. Instead of using `"\033[1m"` and `"\033[21m"`, you can use `enable(style_code::bold)` and `disable(style_code::bold)` which is more descriptive.
+`csi` provides easy to use methods that return ANSI escape sequence strings. `enable(style_code::bold)` and `disable(style_code::bold)` are equivilent to `"\033[1m"` and `"\033[21m"`.
 
 ## How to print text with style:
-Two methods named `enable` and `disable` can be used to enable and disable any style. Both methods accept `style_code` values. `style_code` is an `enum` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
+The `enable` and `disable` methods take `style_code` values as a parameter and return strings which enable or disable a style. `style_code` is an `enum class` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -21,7 +21,7 @@ int main(){
 	          << std::endl;
 }
 ```
-A method named `style` can be used to enable and disable all styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bool bold`, `bool italics`, `bool underlined`, and `bool strikethrough`.
+The `style` method can be used to enable and disable any styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bold`, `italics`, `underlined`, and `strikethrough`.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -43,7 +43,7 @@ int main(){
 }
 ```
 ## How to print colored text:
-Two methods named `foreground` and `background` can be used to set the text color and the background color respectively. Both methods accept `color_code` values. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
+The `foreground` and `background` methods take `color_code` values and return strings which set the text color and the background color. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -64,7 +64,7 @@ int main(){
 	          << std::endl;
 }
 ```
-A method named `color` can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `color_code foreground`, `color_code background`, and `bool inverse`.
+The `color` method can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `foreground`, `background`, and `inverse`.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -101,7 +101,7 @@ int main(){
 }
 ```
 ## How to erase the display:
-Not only can the display be erased, lines can be erased and even portions of lines can be erased. Two methods named `erase_display` and `erase_line` are defined and they both accept an `erase_mode` value. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
+Not only can the display be erased, lines can be erased and even portions of lines can be erased. The `erase_display` and `erase_line` accept `erase_mode` values as parameters and return strings which erase lines or even whole display. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
