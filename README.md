@@ -43,7 +43,7 @@ int main(){
 }
 ```
 ## How to print colored text:
-The `foreground` and `background` methods take `color_code` values and return strings which set the text color and the background color. `color_code` is an `enum` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
+The `foreground` and `background` methods take `color_code` values and return strings which set the text color or the background color. `color_code` is an `enum class` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -70,7 +70,7 @@ The `color` method can be used to set the text color and the background color si
 #include "csi.hpp"
 
 int main(){
-	/* Set the text color to cyan,
+	/* Set the text color to cyan and
 	   the background color to magenta. */
 	std::cout << csi::color(
 		csi::color_code::cyan,    // Foreground (Text) color
@@ -86,7 +86,7 @@ int main(){
 }
 ```
 ## How to move the cursor:
-Seven methods are defined for moving the cursor. They are `cursor_up`, `cursor_down`, `cursor_forward`, `cursor_back`, `cursor_next_line`, `cursor_previous_line`, and `cursor_position`. `cursor_position` accepts two parameters: `row` and `column`, both 1 by default (top-left corner) while the other methods accept a single parameter, also 1 by default.
+There are 7 methods for moving the cursor: `cursor_up`, `cursor_down`, `cursor_forward`, `cursor_back`, `cursor_next_line`, `cursor_previous_line`, and `cursor_position`. `cursor_position` accepts two parameters: `row` and `column`, both 1 by default (top-left corner) while the other methods accept a single parameter, also 1 by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -101,15 +101,17 @@ int main(){
 }
 ```
 ## How to erase the display:
-Not only can the display be erased, lines can be erased and even portions of lines can be erased. The `erase_display` and `erase_line` accept `erase_mode` values as parameters and return strings which erase lines or even whole display. `erase_mode` is an `enum` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
+The `erase_display` and `erase_line` methods accept `erase_mode` values as parameters and return strings which erase lines or even the whole display. `erase_mode` is an `enum class` which defines three modes: `to_end`, `to_beginning`, and `all`. `to_end` erases from the cursor to the end of the line/display. `to_beginning` erases from the cursor to the beginning of the line/display. `all` erases the entire line/display. For both methods, `erase_mode` is `all` by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
 
 int main(){
-	/* Erase the display and print "Hello World!",
-	   then print a new line */
+	/* Erase the display, set the cursor position to
+	   the top-left, print "Hello World!", then print
+	   a new line */
 	std:: cout << csi::erase_display()
+	           << csi::cursor_position()
 	           << "Hello World!"
 	           << std::endl;
 }
