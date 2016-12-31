@@ -44,7 +44,7 @@ int main(){
 }
 ```
 ## How to print colored text:
-The `foreground` and `background` methods take `color_code` values and return strings that set the text color or the background color. `color_code` is an `enum class` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
+The `foreground` and `background` methods take `color_code` values and return strings that set the text color or the background color. `color_code` is an `enum class` of 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
