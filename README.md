@@ -7,7 +7,7 @@ Many popular terminals support colors, styles, and other features only accessibl
 `csi` provides easy to use methods that return ANSI escape sequence strings. `enable(style_code::bold)` and `disable(style_code::bold)` are equivilent to `"\033[1m"` and `"\033[21m"`.
 
 ## How to print text with style:
-The `enable` and `disable` methods take `style_code` values as a parameter and return strings which enable or disable a style. `style_code` is an `enum class` which defines 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
+The `enable` and `disable` methods take `style_code` values and return strings that enable or disable a style. `style_code` is an `enum class` of 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -21,7 +21,7 @@ int main(){
 	          << std::endl;
 }
 ```
-The `style` method can be used to enable and disable any styles simultaneously. The method accepts 5 optional `bool`, all of which are `false` by default: `bold`, `italics`, `underlined`, `strikethrough`, and `inverse`.
+The `style` method returns strings that can enable and disable all styles simultaneously. The method accepts 5 optional `bool`, all `false` by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -32,7 +32,8 @@ int main(){
 		false, // Bold
 		true,  // Italics
 		false, // Underlined
-		true   // Strikethrough
+		true,  // Strikethrough
+		false  // Inverse
 	);
 
 	/* Print "Hello World!", disable all
@@ -43,7 +44,7 @@ int main(){
 }
 ```
 ## How to print colored text:
-The `foreground` and `background` methods take `color_code` values and return strings which set the text color or the background color. `color_code` is an `enum class` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
+The `foreground` and `background` methods take `color_code` values and return strings that set the text color or the background color. `color_code` is an `enum class` which defines 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -64,7 +65,7 @@ int main(){
 	          << std::endl;
 }
 ```
-The `color` method can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default.
+The `color` method returns strings that set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
