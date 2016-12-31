@@ -117,39 +117,3 @@ int main(){
 	           << std::endl;
 }
 ```
-## How to print the text in the image at the top:
-```cpp
-#include <iostream>
-#include "csi.hpp"
-
-int main(){
-	// For every color
-	for(auto& i: {
-		csi::color_code::none,
-		csi::color_code::black,
-		csi::color_code::red,
-		csi::color_code::green,
-		csi::color_code::yellow,
-		csi::color_code::blue,
-		csi::color_code::magenta,
-		csi::color_code::cyan,
-		csi::color_code::white
-	}){
-		std::cout << csi::foreground(i)
-		          << "Hello World! ";
-		// For every style
-		for(auto& i: {
-			csi::style_code::bold,
-			csi::style_code::italics,
-			csi::style_code::underlined,
-			csi::style_code::strikethrough
-		}){
-			std::cout << csi::enable(i)
-			          << "Hello World!"
-			          << csi::disable(i)
-			          << ' ';
-		}
-		std::cout << std::endl;
-	}
-}
-```
