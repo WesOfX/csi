@@ -28,7 +28,8 @@ namespace csi{
 		bool bold = false,
 		bool italics = false,
 		bool underlined = false,
-		bool strikethrough = false
+		bool strikethrough = false,
+		bool inverse = false
 	);
 
 	// Enum for color codes.
@@ -58,8 +59,7 @@ namespace csi{
 	 * highlighted. */
 	std::string color(
 		color_code foreground = color_code::none,
-		color_code background = color_code::none,
-		bool inverse = false
+		color_code background = color_code::none
 	);
 
 	// Return a control sequence string which moves the cursor up.

@@ -4,7 +4,8 @@ std::string csi::style(
 	bool bold,
 	bool italics,
 	bool underlined,
-	bool strikethrough
+	bool strikethrough,
+	bool inverse
 ){
 	return {
 		prefix +
@@ -35,6 +36,13 @@ std::string csi::style(
 				(int)style_code::enable_offset :
 				(int)style_code::disable_offset
 			)
+		) + ";" +
+		std::to_string(
+			(int)style_code::inverse + (
+				inverse ?
+				(int)style_code::enable_offset :
+				(int)style_code::disable_offset
+			)
 		) + "m"
 	};
 }
@@ -53,8 +61,7 @@ std::string csi::disable(style_code style){
 
 std::string csi::color(
 	color_code foreground,
-	color_code background,
-	bool inverse
+	color_code background
 ){
 	return {
 		prefix +
@@ -63,13 +70,6 @@ std::string csi::color(
 		) + ";" +
 		std::to_string(
 			(int)background + (int)color_code::background_offset
-		) + ";" +
-		std::to_string(
-			(int)style_code::inverse + (
-				inverse ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
 		) + "m"
 	};
 }
