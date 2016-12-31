@@ -1,4 +1,4 @@
-![Demo screenshot!](https://i.sli.mg/C12gpM.png)
+![Demo screenshot!](https://i.sli.mg/hTAFEF.png)
 
 ## What is CSI?
 Many popular terminals support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `'\033'` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `'['` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. e.g. `"\033[C"` for moving the cursor forward. Some CSI codes require parameters which are a number between the `'['` and the suffix. Multiple parameters are separated with `';'` characters. The following CSI code enables bold, italics, and underline: `"\033[1;3;4m"`
@@ -140,13 +140,11 @@ int main(){
 			csi::style_code::bold,
 			csi::style_code::italics,
 			csi::style_code::underlined,
-			csi::style_code::strikethrough
+			csi::style_code::strikethrough,
+			csi::style_code::inverse
 		}){
 			std::cout << csi::enable(i)
 			          << "Hello World!"
-			          << csi::enable(csi::style_code::inverse)
-			          << "Hello World!"
-			          << csi::disable(csi::style_code::inverse)
 			          << csi::disable(i);
 		}
 		std::cout << std::endl;
