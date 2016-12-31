@@ -117,7 +117,7 @@ int main(){
 }
 ```
 ## How to print the text in the image at the top:
-```
+```cpp
 #include <iostream>
 #include "csi.hpp"
 
