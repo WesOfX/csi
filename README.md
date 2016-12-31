@@ -21,7 +21,7 @@ int main(){
 	          << std::endl;
 }
 ```
-The `style` method can be used to enable and disable any styles simultaneously. The method accepts 4 optional `bool`, all of which are `false` by default: `bold`, `italics`, `underlined`, and `strikethrough`.
+The `style` method can be used to enable and disable any styles simultaneously. The method accepts 5 optional `bool`, all of which are `false` by default: `bold`, `italics`, `underlined`, `strikethrough`, and `inverse`.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -64,7 +64,7 @@ int main(){
 	          << std::endl;
 }
 ```
-The `color` method can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default, and an optional `bool` which is `false` by default: `foreground`, `background`, and `inverse`.
+The `color` method can be used to set the text color and the background color simultaneously. The method accepts 2 optional `color_code`, both of which are `none` by default.
 ```cpp
 #include <iostream>
 #include "csi.hpp"
@@ -73,7 +73,7 @@ int main(){
 	/* Set the text color to cyan,
 	   the background color to magenta. */
 	std::cout << csi::color(
-		csi::color_code::cyan, // Text color
+		csi::color_code::cyan,    // Foreground (Text) color
 		csi::color_code::magenta, // Background color
 	);
 
