@@ -1,10 +1,7 @@
 ![Demo screenshot!](https://i.sli.mg/tpP4nf.png)
 
-## What is CSI?
-Many popular terminals support colors, styles, and other features only accessible with ANSI escape sequences. An ANSI escape sequence is a string which starts with the `'\033'` character a.k.a. an ANSI escape character. An ANSI escape character followed by a `'['` character is called a control sequence introducer or CSI. A CSI needs to be suffixed with a character to determine what it does. e.g. `"\033[C"` for moving the cursor forward. Some CSI codes require parameters which are a number between the `'['` and the suffix. Multiple parameters are separated with `';'` characters. The following CSI code enables bold, italics, and underline: `"\033[1;3;4m"`
-
 ## Why is this library useful?
-`csi` provides easy to use methods that return ANSI escape sequence strings. `enable(style_code::bold)` and `disable(style_code::bold)` are equivilent to `"\033[1m"` and `"\033[21m"`.
+`csi` provides easy to use methods that return special strings for controlling the terminal. For example, `enable(style_code::bold)` and `disable(style_code::bold)` return `"\033[1m"` and `"\033[21m"` which the terminal interprets as commands to enable and disable bold.
 
 ## How to print text with style:
 The `enable` and `disable` methods take `style_code` values and return strings that enable or disable a style. `style_code` is an `enum class` of 5 styles: `bold`, `italics`, `underline`, `strikethrough`, and `inverse`. `inverse` inverts the text color and the background color as-if the text is highlighted.
@@ -43,7 +40,7 @@ int main(){
 	          << std::endl;
 }
 ```
-## How to print colored text:
+## How to print text with color:
 The `foreground` and `background` methods take `color_code` values and return strings that set the text color or the background color. `color_code` is an `enum class` of 9 colors: `none`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, and `white`. `none` is the terminal's default color.
 ```cpp
 #include <iostream>
