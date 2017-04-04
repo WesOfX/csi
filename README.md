@@ -1,5 +1,3 @@
-![Demo screenshot!](https://i.sli.mg/tpP4nf.png)
-
 ## Why is this library useful?
 `csi` provides easy to use methods that return special strings for controlling the terminal. For example, `enable(style::bold)` and `disable(style::bold)` return `"\033[1m"` and `"\033[21m"` which the terminal interprets as commands to enable and disable bold.
 
