@@ -1,88 +1,26 @@
 #include "csi.hpp"
 
-std::string csi::style(
-	bool bold,
-	bool italics,
-	bool underlined,
-	bool strikethrough,
-	bool inverse
-){
-	return {
-		prefix +
-		std::to_string(
-			(int)style_code::bold + (
-				bold ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
-		) + ";" +
-		std::to_string(
-			(int)style_code::italics + (
-				italics ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
-		) + ";" +
-		std::to_string(
-			(int)style_code::underlined + (
-				underlined ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
-		) + ";" +
-		std::to_string(
-			(int)style_code::strikethrough + (
-				strikethrough ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
-		) + ";" +
-		std::to_string(
-			(int)style_code::inverse + (
-				inverse ?
-				(int)style_code::enable_offset :
-				(int)style_code::disable_offset
-			)
-		) + "m"
-	};
-}
-
-std::string csi::enable(style_code style){
+std::string csi::enable(style style){
 	return prefix + std::to_string(
-		(int)style + (int)style_code::enable_offset
+		(int)style + (int)style::enable_offset
 	) + "m";
 }
 
-std::string csi::disable(style_code style){
+std::string csi::disable(style style){
 	return prefix + std::to_string(
-		(int)style + (int)style_code::disable_offset
+		(int)style + (int)style::disable_offset
 	) + "m";
 }
 
-std::string csi::color(
-	color_code foreground,
-	color_code background
-){
-	return {
-		prefix +
-		std::to_string(
-			(int)foreground + (int)color_code::foreground_offset
-		) + ";" +
-		std::to_string(
-			(int)background + (int)color_code::background_offset
-		) + "m"
-	};
-}
-
-std::string csi::foreground(color_code color){
+std::string csi::foreground(color color){
 	return prefix + std::to_string(
-		(int)color + (int)color_code::foreground_offset
+		(int)color + (int)color::foreground_offset
 	) + "m";
 }
 
-std::string csi::background(color_code color){
+std::string csi::background(color color){
 	return prefix + std::to_string(
-		(int)color + (int)color_code::background_offset
+		(int)color + (int)color::background_offset
 	) + "m";
 }
 
